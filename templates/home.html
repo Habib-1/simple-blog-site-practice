@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for post in data %}
+        <div class="col-4 flex-wrap my-3 ">
+            <div class="card ">
+                <div class="card-body">
+                  <h5 class="card-title"> {{post.title}} </h5>
+                  <p class="card-text"> {{post.content}} </p>
+                  <h5>Author : {{post.author.name}} <h5>
+                  <p>Categories : 
+                   {% for cat in post.category.all %}
+                   <button class='btn btn-outline-info mb-2'>{{cat.name}}</button>
+                   
+                   {% endfor %} 
+                   </p>
+                   <a href=" {% url 'edit_post' post.pk %} " class="btn btn-warning btn-sm">Edit</a>
+                   <a href=" {% url 'delete_post' post.pk %} " class="btn btn-danger btn-sm">Delete</a>
+                </div>
+              </div>
+        </div>    
+          {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+    
